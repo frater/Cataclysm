@@ -6658,36 +6658,60 @@ void game::update_map(int &x, int &y)
 void game::set_adjacent_overmaps(bool from_scratch)
 {
  if (levx == OMAPX - 1 || levx == 0 || (from_scratch && levx <= OMAPX)) {
-  delete om_hori;
+  if (om_hori != NULL)  {
+	 delete om_hori;
+	 om_hori = NULL;
+  }
   om_hori = new overmap(this, cur_om.posx - 1, cur_om.posy, cur_om.posz);
   if (levy == OMAPY - 1 || levy == 0 || (from_scratch && levy <= OMAPY)) {
-   delete om_diag;
+   if (om_diag != NULL) {
+	  delete om_diag;
+	  om_diag = NULL;
+   }
    om_diag = new overmap(this, cur_om.posx - 1, cur_om.posy - 1, cur_om.posz);
   } else if (levy == OMAPY || levy == OMAPY * 2 - 1 ||
              (from_scratch && levy > OMAPY)) {
-   delete om_diag;
+   if (om_diag != NULL) {
+	  delete om_diag;
+	  om_diag = NULL;
+   }
    om_diag = new overmap(this, cur_om.posx - 1, cur_om.posy + 1, cur_om.posz);
   }
  } else if (levx == OMAPX || levx == OMAPX * 2 - 1 ||
             (from_scratch && levx > OMAPX)) {
+	 if (om_hori != NULL) {
   delete om_hori;
+  om_hori = NULL;
+	 }
   om_hori = new overmap(this, cur_om.posx + 1, cur_om.posy, cur_om.posz);
   if (levy == OMAPY - 1 || levy == 0 || (from_scratch && levy <= OMAPY)) {
-   delete om_diag;
+   if (om_diag != NULL) {
+	  delete om_diag;
+	  om_diag == NULL;
+   }
    om_diag = new overmap(this, cur_om.posx + 1, cur_om.posy - 1, cur_om.posz);
   } else if (levy == OMAPY || levy == OMAPY * 2 - 1 ||
              (from_scratch && levy > OMAPY)) {
+	  if (om_diag != NULL) {
    delete om_diag;
+	  om_diag = NULL;
+	  }
    om_diag = new overmap(this, cur_om.posx + 1, cur_om.posy + 1, cur_om.posz);
   }
  }
 
  if (levy == OMAPY - 1 || levy == 0 || (from_scratch && levy <= OMAPY)) {
-  delete om_vert;
+  if (om_vert != NULL) {
+	 delete om_vert;
+	 om_vert = NULL;
+  }
   om_vert = new overmap(this, cur_om.posx    , cur_om.posy - 1, cur_om.posz);
  } else if (levy == OMAPY || levy == OMAPY * 2 - 1 ||
             (from_scratch && levy > OMAPY)) {
+	 if (om_vert != NULL) {
   delete om_vert;
+  om_vert = NULL;
+	 }
   om_vert = new overmap(this, cur_om.posx    , cur_om.posy + 1, cur_om.posz);
  }
 }

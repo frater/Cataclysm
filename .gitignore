@@ -1,0 +1,9 @@
+objwin/
+save/
+.settings/
+.cproject
+.project
+data/*.template
+data/keymap.txt
+data/options.txt
+*.exe
